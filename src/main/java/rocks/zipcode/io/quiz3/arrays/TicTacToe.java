@@ -5,26 +5,49 @@ package rocks.zipcode.io.quiz3.arrays;
  */
 public class TicTacToe {
 
+    private String[][] board;
+
     public TicTacToe(String[][] board) {
+        this.board = board;
     }
 
     public TicTacToe() {
     }
 
     public String[] getRow(Integer value) {
-        return null;
+
+        return board[value];
     }
 
     public String[] getColumn(Integer value) {
-        return null;
+        String[] column = new String[board.length];
+        for (int row = 0; row < board.length; row++) {
+            column[row] = board[row][value];
+            
+        }
+
+        return column;
     }
 
     public Boolean isRowHomogenous(Integer rowIndex) {
-        return null;
+        String[] row = getRow(rowIndex);
+
+        return allValuesTheSame(row);
     }
 
     public Boolean isColumnHomogeneous(Integer columnIndex) {
-        return null;
+        String[] column = getColumn(columnIndex);
+        return allValuesTheSame(column);
+    }
+
+    private Boolean allValuesTheSame(String[] row) {
+        for (int i = 1; i < row.length; i++) {
+            if (!row[i].equals(row[0])) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public String getWinner() {
